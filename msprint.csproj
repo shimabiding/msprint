@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" Sdk="Microsoft.NET.Sdk.WindowsDesktop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <DebugType Condition="'$(Configuration)' == 'Release'">none</DebugType>
+    <!--<OutputPath>bin\</OutputPath>-->
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Npgsql">
+        <HintPath>packages\Npgsql\lib\net461\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+        <HintPath>packages\Microsoft.Bcl.AsyncInterfaces\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+        <HintPath>packages\System.Buffers\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+        <HintPath>packages\System.Memory\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+        <HintPath>packages\System.Numerics.Vectors\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+        <HintPath>packages\System.Runtime.CompilerServices.Unsafe\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web">
+        <HintPath>packages\System.Text.Encodings.Web\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json">
+        <HintPath>packages\System.Text.Json\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+        <HintPath>packages\System.Threading.Tasks.Extensions\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+        <HintPath>packages\System.ValueTuple\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Drawing"/>
+    <Reference Include="System.Windows.Forms"/>
+    <Reference Include="UIAutomationTypes"/>
+    <Reference Include="UIAutomationClient"/>
+
+  </ItemGroup>
+  <ItemGroup>
+    <MyCopy Include="C:\ws\templete.bat"/>
+    <MyCopy Include="C:\ws\requireCommands.txt"/>
+    <MyCopy Include="bin\Debug\msprint.exe.config"/>
+    <Compile Include="src\*.cs"/>
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="@(MyCopy)" DestinationFolder="env" SkipUnchangedFiles="true" />
+    <!--<Csc Sources="@(Compile)"/>-->
+  </Target>
+</Project>
